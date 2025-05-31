@@ -150,3 +150,14 @@ STRIPE_TEST_SECRET_KEY = 'your-secret-key'
 TWILIO_ACCOUNT_SID = 'your_real_account_sid'
 TWILIO_AUTH_TOKEN = 'your_real_auth_token'
 TWILIO_CHAT_SERVICE_SID = 'your_real_service_sid'
+########################## email section ################################
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'akpaejike72@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# Email of the site owner to receive contact form messages
+SITE_OWNER_EMAIL = 'akpaejike72@gmail.com'
+
