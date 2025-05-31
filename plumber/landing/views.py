@@ -107,7 +107,7 @@ def book_service(request):
 
             Please follow up with the customer.
             '''
-            recipient_list = ['mailto:akpaejike72@gmail.com']  # Replace with your actual email
+            recipient_list = ['akpaejike72@gmail.com']  # Replace with your actual email
 
             # Send the email
             send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
