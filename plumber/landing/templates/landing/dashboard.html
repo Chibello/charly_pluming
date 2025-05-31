@@ -1,0 +1,247 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charles | Owner Dashboard</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .site-header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .site-title {
+            text-align: center;
+            font-size: 2.5rem;
+        }
+
+        /* Navigation */
+        .main-nav {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            padding: 10px 0;
+        }
+
+        .main-nav li {
+            margin: 0 15px;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 1rem;
+        }
+
+        .main-nav a:hover {
+            background-color: #555;
+        }
+
+        /* Intro Section */
+        .intro {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .intro h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Dashboard Page */
+        .dashboard-page {
+            padding: 40px 20px;
+        }
+
+        .dashboard-page h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-page p {
+            text-align: center;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        .dashboard h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+
+        .service-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .service-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-item h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .service-item p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .site-footer a {
+            color: #00aaff;
+            text-decoration: none;
+        }
+
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .main-nav li {
+                margin: 10px 0;
+            }
+
+            .site-title {
+                font-size: 2rem;
+            }
+
+            .service-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service-item {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Charles</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/login">Owner Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ✅ Intro Section -->
+    <section class="intro">
+        <div class="container">
+            <h3>Owner Dashboard</h3>
+            <p>Stay in control of your plumbing business—track service requests, manage bookings, and view progress all in one place.</p>
+        </div>
+    </section>
+
+    <main class="dashboard-page">
+        <div class="container">
+            <h2>Welcome to Your Dashboard</h2>
+            <p>Manage your plumbing services and orders here.</p>
+
+            <section class="dashboard">
+                <h3>Your Services & Orders</h3>
+                <div class="service-list">
+                    <!-- Placeholder for dynamic service data -->
+                    <div class="service-item">
+                        <h4>Service #1</h4>
+                        <p>Status: In Progress</p>
+                        <button class="btn-primary">View Details</button>
+                    </div>
+                    <div class="service-item">
+                        <h4>Service #2</h4>
+                        <p>Status: Completed</p>
+                        <button class="btn-primary">View Details</button>
+                    </div>
+                    <div class="service-item">
+                        <h4>Service #3</h4>
+                        <p>Status: Pending</p>
+                        <button class="btn-primary">View Details</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Contact us: <a href="mailto:akpaejike72@gmail.com">akpaejike72@gmail.com</a></p>
+            <p>Reach us on WhatsApp: <a href="https://wa.me/07042429011" target="_blank">Click Here</a></p>
+            <p>&copy; {{ now.year }} Charles Plumbing & Hydro Services. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

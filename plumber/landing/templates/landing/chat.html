@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charles | Plumbing Support Chat</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .site-header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .site-title {
+            text-align: center;
+            font-size: 2.5rem;
+        }
+
+        /* Navbar */
+        .main-nav {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            padding: 10px 0;
+        }
+
+        .main-nav li {
+            margin: 0 15px;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 10px 15px;
+        }
+
+        .main-nav a:hover {
+            background-color: #555;
+        }
+
+        /* Intro Section */
+        .intro {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .intro h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Chat Page */
+        .chat-page {
+            padding: 40px 20px;
+        }
+
+        .chat-page h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .chat-page p {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #444;
+        }
+
+        .chat-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 30px;
+            min-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .site-footer a {
+            color: #00aaff;
+            text-decoration: none;
+        }
+
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .main-nav li {
+                margin: 10px 0;
+            }
+
+            .site-title {
+                font-size: 2rem;
+            }
+
+            .chat-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Charles</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <!--li><a href="/login">Owner Login</a></li-->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ✅ Intro Section -->
+    <section class="intro">
+        <div class="container">
+            <h3>Live Plumbing Chat Support</h3>
+            <p>Have an urgent plumbing question or issue? Our team is available to chat live and help you right away. Let's get your water flowing smoothly again!</p>
+        </div>
+    </section>
+
+    <main class="chat-page">
+        <div class="container">
+            <h2>Plumbing Support Chat</h2>
+            <p>Our support team is ready to assist you with your plumbing needs. Start chatting now!</p>
+
+            <div id="chat-container" class="chat-container">
+                <!-- Chat interface goes here -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Contact us: <a href="mailto:akpaejike72@gmail.com">akpaejike72@gmail.com</a></p>
+            <p>Reach us on WhatsApp: <a href="https://wa.me/07042429011" target="_blank">Click Here</a></p>
+            <p>&copy; {{ now.year }} Charles Plumbing & Hydro Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Twilio Chat JS -->
+    <script src="https://media.twiliocdn.com/sdk/js/chat/v3.6/twilio-chat.min.js"></script>
+    <script>
+        // Initialize Twilio chat client
+        Twilio.Chat.Client.create('your_twilio_token').then(client => {
+            client.getChannelBySid('{{ channel_sid }}').then(channel => {
+                channel.join().then(() => {
+                    // Implement chat UI logic here
+                    console.log("Chat channel joined successfully.");
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

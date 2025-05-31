@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charles | Complete Your Payment</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Charles</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="payment-page">
+        <div class="container">
+            <h2>Complete Your Payment</h2>
+            <p>You're almost done! Please complete your payment of <strong>$50</strong> to finalize your service booking.</p>
+
+            <section class="payment-form">
+                <form action="" method="POST" id="payment-form">
+                    {% csrf_token %}
+                    <div id="card-element">
+                        <!-- A Stripe Element will be inserted here. -->
+                    </div>
+                    <!-- Used to display form errors. -->
+                    <div id="card-errors" role="alert"></div>
+                    <button type="submit" id="pay-button" class="btn-primary">Pay $50</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Contact us: <a href="mailto:info@example.com">info@example.com</a></p>
+            <p>Reach us on WhatsApp: <a href="https://wa.me/yourwhatsappnumber" target="_blank">Click Here</a></p>
+            <p>&copy; {{ now.year }} Charles Plumbing & Hydro Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var stripe = Stripe('your-publishable-key'); // Replace with your actual Stripe public key
+        var elements = stripe.elements();
+        var card = elements.create('card');
+        card.mount('#card-element');
+
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            stripe.createToken(card).then(function(result) {
+                if (result.error) {
+                    // Show error in the #card-errors div
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    // Send the token to your server
+                    var token = result.token;
+                    var hiddenInput = document.createElement('input');
+                    hiddenInput.setAttribute('type', 'hidden');
+                    hiddenInput.setAttribute('name', 'stripeToken');
+                    hiddenInput.setAttribute('value', token.id);
+                    form.appendChild(hiddenInput);
+
+                    form.submit();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

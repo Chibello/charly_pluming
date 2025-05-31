@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charles | Book Plumbing Service</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .site-header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .site-title {
+            text-align: center;
+            font-size: 2.5rem;
+        }
+
+        /* Navigation */
+        .main-nav {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            padding: 10px 0;
+        }
+
+        .main-nav li {
+            margin: 0 15px;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 1rem;
+        }
+
+        .main-nav a:hover {
+            background-color: #555;
+        }
+
+        /* Intro Section */
+        .intro {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .intro h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Booking Section */
+        .service-booking {
+            padding: 40px 20px;
+            background-color: #fff;
+        }
+
+        .service-booking h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .service-booking p {
+            text-align: center;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        .booking-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f1f1f1;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-form p {
+            margin-bottom: 15px;
+        }
+
+        .booking-form input,
+        .booking-form select,
+        .booking-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            margin-top: 15px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .site-footer a {
+            color: #00aaff;
+            text-decoration: none;
+        }
+
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .main-nav li {
+                margin: 10px 0;
+            }
+
+            .site-title {
+                font-size: 2rem;
+            }
+
+            .booking-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Charles</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <!--li><a href="/login">Owner Login</a></li-->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ✅ Intro Section -->
+    <section class="intro">
+        <div class="container">
+            <h3>Schedule Your Plumbing Service</h3>
+            <p>Whether it’s a leaky faucet, clogged pipe, or a full installation, Charles Plumbing has got you covered. Fill out the form below to book your trusted professional today!</p>
+        </div>
+    </section>
+
+    <main class="service-booking">
+        <div class="container">
+            <h2>Book a Plumbing Service</h2>
+            <p>Fill in the form below to schedule a service with one of our professional plumbers.</p>
+
+            <form method="post" class="booking-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn-primary">Submit Booking</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Contact us: <a href="mailto:akpaejike72@gmail.com">akpaejike72@gmail.com</a></p>
+            <p>Reach us on WhatsApp: <a href="https://wa.me/07042429011" target="_blank">Click Here</a></p>
+            <p>&copy; {{ now.year }} Charles Plumbing & Hydro Services. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
