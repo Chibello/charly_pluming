@@ -9,14 +9,34 @@ import stripe
 from django.conf import settings
 from twilio.rest import Client
 from django.conf import settings
-
+from django.core.mail import send_mail
 
 # Home page view
 def home(request):
     return render(request, 'landing/home.html')
 
-# Contact page view
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from django.conf import settings
+
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        subject = f"Message from {name}"
+        full_message = f"From: {name} <{email}>\n\nMessage:\n{message}"
+
+        send_mail(
+            subject,
+            full_message,
+            email,  # From email
+            [settings.SITE_OWNER_EMAIL],  # To email (you should define this in settings.py)
+            fail_silently=False,
+        )
+        return redirect('home')
+
     return render(request, 'landing/contact.html')
 
 # Login view for user authentication
@@ -63,11 +83,35 @@ def dashboard(request):
     return render(request, 'landing/dashboard.html')
 
 # Service booking form view
+from django.core.mail import send_mail
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from .forms import ServiceBookingForm
+from django.conf import settings  # Make sure your email settings are configured
+
 def book_service(request):
     if request.method == 'POST':
         form = ServiceBookingForm(request.POST)
         if form.is_valid():
-            form.save()
+            booking = form.save()
+
+            # Customize the email content
+            subject = 'New Service Booking Received'
+            message = f'''
+            A new service booking has been received.
+
+            Name: {booking.name}
+            Email: {booking.email}
+            Service: {booking.service}
+            Preferred Date: {booking.preferred_date}
+
+            Please follow up with the customer.
+            '''
+            recipient_list = ['mailto:akpaejike72@gmail.com']  # Replace with your actual email
+
+            # Send the email
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
+
             messages.success(request, 'Your booking has been received! We will contact you soon.')
             return redirect('home')
     else:
